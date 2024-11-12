@@ -1,0 +1,7 @@
+.owl-carousel .owl-nav .owl-prev,
+.owl-carousel .owl-nav .owl-next {
+  font-size: 40px !important;
+  width: 60px;
+
+  cursor: pointer;
+}

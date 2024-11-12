@@ -1,0 +1,832 @@
+/* Importing Google font - Poppins */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+:root {
+  --primary: #c06b3e;
+  --secondary: #d8d2c2;
+  --danger: crimson;
+  --light: #faf7f0;
+  --dark: #4a4947;
+  --black: #000;
+  --white: #fff;
+  --mobile-breakpoint: 640px;
+  --tablet-breakpoint: 768px;
+  --desktop-breakpoint: 1200px;
+  --fs-sm: $sm-font-size;
+  --fs-base: $base-font-size;
+  --fs-md: $md-font-size;
+  --fs-lg: $lg-font-size;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  position: relative;
+  background-color: var(--black);
+  color: var(--light);
+}
+@media (max-width: 420px) {
+  body {
+    width: 420px;
+  }
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 24px 8px;
+}
+@media (max-width: 420px) {
+  .container {
+    padding: 4px 8px;
+  }
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px;
+  z-index: 100;
+  transition: background-color 0.3s ease;
+  background-color: transparent;
+}
+.header.scrolled {
+  background-color: rgba(0, 0, 0, 0.9); /* Background color when scrolled */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+}
+.header .navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.header .navbar .navbar-logo {
+  width: 60px;
+  height: 60px;
+  overflow: hidden;
+}
+.header .navbar .navbar-logo img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+.header .navbar .navbar-menu {
+  display: flex;
+  gap: 35px;
+}
+.header .navbar .navbar-menu a {
+  color: var(--white);
+  transition: 0.2s ease;
+}
+.header .navbar .navbar-menu a:hover {
+  color: var(--primary);
+}
+.header .navbar .nav-btns {
+  display: flex;
+  gap: 10px;
+}
+.header .navbar .nav-btns .add-to-cart-link {
+  background-color: transparent;
+  border: none;
+  color: var(--light);
+  font-size: 30px;
+  text-decoration: none;
+  cursor: pointer;
+}
+@media (max-width: 1200px) {
+  .header.show-mobile-menu::before {
+    content: "";
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(5px);
+  }
+  .header .navbar .navbar-menu {
+    position: fixed;
+    top: 0;
+    left: -300px;
+    width: 300px;
+    height: 100vh;
+    background: var(--black);
+    flex-direction: column;
+    padding: 70px 40px 0;
+    transition: left 0.2s ease;
+  }
+  .header a {
+    color: var(--black);
+  }
+  .header.show-mobile-menu .navbar .navbar-menu {
+    left: 0;
+  }
+}
+
+#close-menu-btn {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  cursor: pointer;
+  display: none;
+}
+
+#hamburger-btn {
+  color: var(--white);
+  cursor: pointer;
+  display: none;
+}
+
+@media (max-width: 1200px) {
+  #hamburger-btn,
+  #close-menu-btn {
+    display: block;
+  }
+}
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 10;
+  padding-top: 15%;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.modal .modal-content {
+  background-color: var(--primary);
+  margin: auto;
+  padding: 20px;
+  width: 80%;
+  max-width: 400px;
+  text-align: center;
+  border-radius: 6px;
+}
+.modal #signUpButton {
+  background-color: var(--dark);
+  padding: 6px 12px;
+  color: var(--light);
+  border-radius: 3px;
+  display: block;
+  width: 120px;
+  margin: 6px auto 0;
+}
+.modal .close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.modal .close:hover,
+.modal .close:focus {
+  color: black;
+}
+
+.hero-section {
+  background-position: fixed;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+}
+.hero-section.home {
+  height: 100vh;
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/assets/img/banner/home-banner.jpg");
+}
+.hero-section.coffee-selection {
+  height: 50vh;
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/assets/img/banner/coffee-collection-banner.jpg");
+}
+.hero-section.coffee-detail {
+  height: 90vh;
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/assets/img/banner/coffee-collection-banner.jpg");
+}
+.hero-section.brewing-equipment {
+  height: 90vh;
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/assets/img/banner/coffee-machine.jpg");
+}
+.hero-section.events {
+  height: 50vh;
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/assets/img/banner/coffee-events.jpg");
+}
+.hero-section.special-offers {
+  height: 70vh;
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/assets/img/coffee-seed-2.jpg");
+}
+.hero-section.shopping-carts {
+  height: 40vh;
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/assets/img/banner/home-banner.jpg");
+}
+.hero-section.signup {
+  height: 40vh;
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/assets/img/banner/home-banner.jpg");
+}
+.hero-section .content {
+  color: var(--white);
+}
+.hero-section .content h2 {
+  font-size: 3rem;
+  max-width: 600px;
+  line-height: 70px;
+}
+.hero-section .content h3 {
+  font-size: 2rem;
+  max-width: 600px;
+  line-height: 40px;
+  color: var(--primary);
+}
+.hero-section .content p {
+  font-weight: 300;
+  max-width: 600px;
+  margin-top: 15px;
+}
+.hero-section .content a {
+  display: block;
+  width: 120px;
+  background: var(--white);
+  padding: 12px 30px;
+  border: none;
+  font-size: 1rem;
+  border-radius: 6px;
+  margin-top: 38px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.2s ease;
+}
+.hero-section .content a:hover {
+  color: var(--white);
+  background: var(--primary);
+}
+@media (max-width: 1200px) {
+  .hero-section .content {
+    text-align: center;
+  }
+  .hero-section .content :is(h2, p) {
+    max-width: 100%;
+  }
+  .hero-section .content h2 {
+    font-size: 2.3rem;
+    line-height: 60px;
+  }
+  .hero-section .content a {
+    padding: 9px 18px;
+    margin: 12px auto;
+  }
+}
+
+.title {
+  font-size: 24px;
+  color: var(--primary);
+  text-align: center;
+  padding: 12px 0;
+}
+
+.add-to-cart-btn {
+  display: block;
+  padding: 6px 8px;
+  outline: none;
+  border: 1px solid var(--primary);
+  border-radius: 5px;
+  background-color: transparent;
+  color: white;
+  cursor: pointer;
+}
+.add-to-cart-btn:hover {
+  background-color: var(--primary);
+}
+
+.coffee-menu-section {
+  width: 100%;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+  padding: 50px 20px;
+}
+.coffee-menu-section.home {
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)), url("/assets/img/coffee-seed-2.jpg");
+}
+.coffee-menu-section .coffee-items-wrapper {
+  margin-bottom: 16px;
+}
+.coffee-menu-section .coffee-items-wrapper .coffee-item {
+  width: 100%;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--dark);
+  border-radius: 5px;
+  padding: 12px;
+  cursor: pointer;
+}
+.coffee-menu-section .coffee-items-wrapper .coffee-item:hover {
+  border-color: var(--primary);
+}
+.coffee-menu-section .coffee-items-wrapper .coffee-item .coffee-image {
+  scale: 0.9;
+  aspect-ratio: 1;
+  object-fit: cover;
+  margin: 0 auto;
+  padding: 12px 0;
+  transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+}
+.coffee-menu-section .coffee-items-wrapper .coffee-item .coffee-image:hover {
+  scale: 1;
+}
+.coffee-menu-section .coffee-items-wrapper .coffee-item .coffee-name {
+  font-size: medium;
+  color: var(--primary);
+}
+.coffee-menu-section .coffee-items-wrapper .coffee-item .coffee-price-order-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.coffee-menu-section .coffee-items-wrapper .coffee-item .coffee-price-order-wrapper .coffee-price {
+  color: var(--white);
+  font-weight: 500;
+}
+.coffee-menu-section .coffee-items-wrapper .coffee-item .coffee-price-order-wrapper .coffee-price .normal-price {
+  text-decoration: line-through;
+}
+.coffee-menu-section .coffee-items-wrapper .coffee-item .coffee-price-order-wrapper .coffee-price .discount-price {
+  color: var(--primary);
+}
+
+.feature {
+  padding: 24px 12px;
+}
+.feature .feature-wrapper {
+  width: 100%;
+}
+.feature .feature-wrapper .feature-image-wrapper {
+  max-width: 400px;
+  height: auto;
+  overflow: hidden;
+}
+.feature .feature-wrapper .feature-image-wrapper .feature-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+.feature .feature-wrapper .feature-description {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.feature .feature-wrapper .feature-description h5 {
+  font-weight: 500;
+  text-transform: uppercase;
+  color: var(--primary);
+  font-size: 18px;
+}
+.feature .feature-wrapper .feature-description h2 {
+  font-weight: 600;
+  font-size: 32px;
+  margin-bottom: 12px;
+}
+.feature .feature-wrapper .feature-description p {
+  font-size: 14px;
+  color: var(--light);
+}
+.feature .feature-wrapper .feature-description .coffee-feature-icon-wrapper {
+  margin: 18px 0 0;
+}
+.feature .feature-wrapper .feature-description .coffee-feature-icon-wrapper .coffee-feature-icon {
+  display: flex;
+  margin-bottom: 12px;
+}
+.feature .feature-wrapper .feature-description .coffee-feature-icon-wrapper .coffee-feature-icon .coffee-feature-icon-description {
+  margin-left: 20px;
+}
+.feature .feature-wrapper .feature-description .explore-btn {
+  padding: 10px 14px;
+  font-size: 16px;
+  background-color: var(--primary);
+  outline: none;
+  border: 1px solid var(--primary);
+  border-radius: 3px;
+  color: var(--white);
+  font-weight: 600;
+  cursor: pointer;
+  transition-duration: 400ms;
+}
+.feature .feature-wrapper .feature-description .explore-btn:hover {
+  background-color: transparent;
+}
+@media (min-width: 768px) {
+  .feature .feature-wrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+  }
+}
+
+.location-section .location-wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.location-section .location-wrapper .map {
+  width: 100%;
+}
+.location-section .location-wrapper .map .google-map {
+  width: 95%;
+  height: 400px;
+}
+.location-section .location-wrapper .location-info {
+  width: 100%;
+}
+.location-section .location-wrapper .location-info .location-info-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+}
+.location-section .location-wrapper .location-info .location-info-wrapper .address p {
+  color: var(--light);
+}
+.location-section .location-wrapper .location-info .location-info-wrapper .time {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.location-section .location-wrapper .location-info .location-info-wrapper .time .day {
+  color: var(--primary);
+}
+.location-section .location-wrapper .location-info .location-info-wrapper .time .hour {
+  font-weight: bold;
+}
+@media (max-width: 420px) {
+  .location-section .location-wrapper .location-info .location-info-wrapper {
+    display: block;
+  }
+  .location-section .location-wrapper .location-info .location-info-wrapper .address {
+    margin-bottom: 24px;
+  }
+}
+@media (max-width: 768px) {
+  .location-section .location-wrapper {
+    display: block;
+  }
+}
+
+.footer {
+  background: #000;
+  padding: 30px 0px;
+  font-family: "Play", sans-serif;
+  text-align: center;
+  border-top: 1px solid var(--dark);
+}
+.footer .row {
+  width: 100%;
+  margin: 1% 0%;
+  padding: 0.6% 0%;
+  color: gray;
+  font-size: 0.8em;
+}
+.footer .row a {
+  text-decoration: none;
+  color: gray;
+  transition: 0.5s;
+}
+.footer .row a:hover {
+  color: #fff;
+}
+.footer .row a i {
+  font-size: 2em;
+  margin: 0% 1%;
+}
+.footer .row ul {
+  width: 100%;
+}
+.footer .row ul li {
+  display: inline-block;
+  margin: 0px 30px;
+}
+@media (max-width: 720px) {
+  .footer {
+    text-align: left;
+    padding: 5%;
+  }
+  .footer .row ul li {
+    display: block;
+    margin: 10px 0px;
+    text-align: left;
+  }
+  .footer .row a i {
+    margin: 0% 3%;
+  }
+}
+
+.icon {
+  font-size: 30px;
+}
+
+#coffee-selection {
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/assets/img/banner/primary-bg.jpg");
+  background-position: fixed;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.brewing-equipment-section .brewing-equipment-item {
+  padding: 24px 12px;
+}
+.brewing-equipment-section .brewing-equipment-item h2,
+.brewing-equipment-section .brewing-equipment-item .be-title {
+  font-weight: 600;
+  font-size: 32px;
+  margin-bottom: 4px;
+  color: var(--secondary);
+}
+.brewing-equipment-section .brewing-equipment-item .be-wrapper {
+  width: 100%;
+}
+.brewing-equipment-section .brewing-equipment-item .be-wrapper .be-image-wrapper {
+  width: 80%;
+  height: auto;
+  overflow: hidden;
+}
+.brewing-equipment-section .brewing-equipment-item .be-wrapper .be-image-wrapper .be-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+.brewing-equipment-section .brewing-equipment-item .be-wrapper .be-description {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.brewing-equipment-section .brewing-equipment-item .be-wrapper .be-description h4 {
+  font-weight: 500;
+  text-transform: uppercase;
+  color: var(--primary);
+  font-size: 18px;
+}
+.brewing-equipment-section .brewing-equipment-item .be-wrapper .be-description p {
+  font-size: 14px;
+  color: var(--light);
+}
+.brewing-equipment-section .brewing-equipment-item .be-wrapper .be-description .be-icon-wrapper {
+  margin: 18px 0 0;
+}
+.brewing-equipment-section .brewing-equipment-item .be-wrapper .be-description .be-icon-wrapper .be-icon {
+  display: flex;
+  margin-bottom: 12px;
+}
+.brewing-equipment-section .brewing-equipment-item .be-wrapper .be-description .be-icon-wrapper .be-icon .be-icon-btn {
+  background-color: transparent;
+  border: none;
+  color: var(--light);
+  font-size: 40px;
+}
+.brewing-equipment-section .brewing-equipment-item .be-wrapper .be-description .be-icon-wrapper .be-icon .be-icon-description {
+  margin-left: 20px;
+}
+@media (min-width: 768px) {
+  .brewing-equipment-section .brewing-equipment-item .be-wrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+  }
+  .brewing-equipment-section .brewing-equipment-item .be-wrapper .be-image-wrapper {
+    width: 75%;
+  }
+}
+@media (min-width: 820px) {
+  .brewing-equipment-section .brewing-equipment-item .be-wrapper .be-image-wrapper {
+    width: 50%;
+  }
+}
+
+#special-offers {
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/assets/img/banner/primary-bg.jpg");
+  background-position: fixed;
+  background-size: cover;
+}
+#special-offers .special-offers-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 12px 24px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+#special-offers .special-offers-wrapper .product {
+  display: flex;
+  gap: 12px;
+}
+#special-offers .special-offers-wrapper .product .coffee-img {
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+}
+#special-offers .special-offers-wrapper .product .coffee-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+#special-offers .special-offers-wrapper .product .coffee-description {
+  flex: 1;
+}
+#special-offers .special-offers-wrapper .product .coffee-description h2 {
+  color: var(--primary);
+}
+#special-offers .special-offers-wrapper .product .coffee-description .coffee-price {
+  font-weight: normal;
+}
+#special-offers .special-offers-wrapper .product .coffee-description .coffee-price .normal-price {
+  text-decoration: line-through;
+}
+#special-offers .special-offers-wrapper .product .coffee-description .coffee-price .discount-price {
+  color: var(--primary);
+  font-weight: 700;
+}
+#special-offers .special-offers-wrapper .product .coffee-description .description {
+  color: var(--light);
+  font-size: 14px;
+}
+#special-offers .special-offers-wrapper .product .coffee-description button {
+  background-color: transparent;
+  border: 1px solid var(--primary);
+  border-radius: 6px;
+  color: var(--light);
+  font-size: 14px;
+  text-decoration: none;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+#special-offers .special-offers-wrapper .product .coffee-description button:hover {
+  background-color: var(--primary);
+}
+@media (max-width: 1200px) {
+  #special-offers .special-offers-wrapper {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+#events {
+  max-width: 1200px;
+  margin: 32px auto;
+  padding: 12px 24px;
+}
+#events .events-section-wrapper {
+  width: 100%;
+}
+#events .events-section-wrapper .event-card {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+#events .events-section-wrapper .event-card .event-image {
+  width: 100%;
+  overflow: hidden;
+}
+#events .events-section-wrapper .event-card .event-image img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+#events .events-section-wrapper .event-card .event-content {
+  text-align: center;
+}
+#events .events-section-wrapper .event-card .event-content h4 {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--primary);
+}
+#events .events-section-wrapper .event-card .event-content p {
+  color: var(--dark);
+  margin: 12px 0;
+}
+#events .events-section-wrapper .event-card .event-content button {
+  border: 1px solid var(--primary);
+  outline: none;
+  background-color: transparent;
+  color: var(--light);
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+#events .events-section-wrapper .event-card .event-content button:hover {
+  background-color: var(--primary);
+}
+@media (max-width: 768px) {
+  #events .events-section-wrapper .event-card {
+    grid-template-columns: 1fr;
+    align-items: center;
+  }
+  #events .events-section-wrapper .event-card .event-image {
+    width: 95%;
+    margin: 0 auto;
+  }
+}
+
+#signup-form {
+  width: 100%;
+  margin: 24px auto;
+  display: flex;
+  justify-content: center;
+}
+#signup-form form {
+  max-width: 420px;
+}
+#signup-form form h3 {
+  text-align: center;
+  margin-bottom: 12px;
+}
+#signup-form form .form-control {
+  width: 380px;
+}
+#signup-form form .form-control input {
+  width: 100%;
+  display: block;
+  border: 1px solid var(--primary);
+  border-radius: 6px;
+  background-color: transparent;
+  color: var(--light);
+  padding: 6px 12px;
+  margin-bottom: 16px;
+  outline: none;
+}
+#signup-form form .form-control input:focus {
+  border-width: 2px;
+}
+#signup-form form .signup-btn {
+  border: 1px solid var(--primary);
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--light);
+  background-color: var(--primary);
+  display: block;
+  width: 380px;
+  cursor: pointer;
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background-color: var(--dark);
+  border-radius: 2px;
+  margin: 24px 0;
+}
+
+.cta {
+  max-width: 1200px;
+  margin: 36px auto;
+  padding: 12px 24px;
+  display: flex;
+  justify-content: space-between;
+}
+.cta h3 {
+  font-weight: 800;
+}
+.cta h4 {
+  font-weight: 800;
+  color: var(--primary);
+}
+.cta .signup-btn {
+  display: block;
+  width: 150px;
+  text-align: center;
+  background-color: var(--primary);
+  color: var(--light);
+  font-weight: 600;
+  font-size: 16px;
+  padding: 6px 12px;
+  border-radius: 4px;
+}
+@media (max-width: 640px) {
+  .cta {
+    display: block;
+  }
+  .cta h4 {
+    margin-bottom: 16px;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */
